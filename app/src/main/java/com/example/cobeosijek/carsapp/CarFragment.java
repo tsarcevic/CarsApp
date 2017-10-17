@@ -2,24 +2,27 @@ package com.example.cobeosijek.carsapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class PageFragment extends Fragment {
+public class CarFragment extends Fragment {
     public static final String PAGE_NUMBER = "pageNumber";
 
     private int mPage;
+    RecyclerView carRecycler;
 
-    public static PageFragment newInstance(int page) {
+    public static CarFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(PAGE_NUMBER, page);
-        PageFragment fragment = new PageFragment();
+        CarFragment fragment = new CarFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,10 +37,17 @@ public class PageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_car, container, false);
-        // TODO: 17/10/2017 add recycler adapter
-        TextView textView = view.findViewById(R.id.recycler_fragment);
-        textView.setText("Fragment #" + mPage);
+
+        carRecycler = view.findViewById(R.id.recycler_fragment);
+        CarAdapter carAdapter = new CarAdapter();
+        carAdapter.setCarList(CarUtils.generateCars());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(container.getContext());
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(container.getContext(), DividerItemDecoration.VERTICAL);
+
+        carRecycler.addItemDecoration(itemDecoration);
+        carRecycler.setLayoutManager(layoutManager);
+        carRecycler.setAdapter(carAdapter);
+
         return view;
     }
-
 }
