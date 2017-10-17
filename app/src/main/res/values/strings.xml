@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CarsApp</string>
+    <string name="login_form">Login</string>
+    <string name="login_request">Enter your email and password:</string>
+    <string name="email_login">email@email.com</string>
+    <string name="password_login">Your password</string>
+    <string name="password_error">Password must contains at least 6 characters!</string>
+    <string name="invalid_mail">Invalid email</string>
+    <string name="home_text">Home</string>
+</resources>
