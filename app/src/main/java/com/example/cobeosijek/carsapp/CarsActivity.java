@@ -3,6 +3,8 @@ package com.example.cobeosijek.carsapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +22,9 @@ public class CarsActivity extends AppCompatActivity implements View.OnClickListe
     TextView toolbarText;
     ImageView backButtonImage;
     ImageView launcherImage;
+
+    TabLayout menuTabLayout;
+    ViewPager carPager;
 
     private String userMail;
 
@@ -48,6 +53,10 @@ public class CarsActivity extends AppCompatActivity implements View.OnClickListe
         toolbarText = findViewById(R.id.toolbar_text);
         backButtonImage = findViewById(R.id.back_button);
         launcherImage = findViewById(R.id.small_picture);
+        menuTabLayout = findViewById(R.id.tab_menu);
+        carPager = findViewById(R.id.car_pager);
+        carPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(), CarsActivity.this));
+        menuTabLayout.setupWithViewPager(carPager);
 
         backButtonImage.setOnClickListener(this);
     }
