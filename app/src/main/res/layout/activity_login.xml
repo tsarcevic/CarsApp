@@ -43,6 +43,7 @@
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_mail"
         android:hint="@string/email_login"
+        android:text="hehe@hehe.com"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -55,7 +56,8 @@
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_password"
         android:hint="@string/password_login"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="mrstitamo"/>
 
     <Button
         android:id="@+id/login_button"

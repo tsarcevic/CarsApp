@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.classes;
 
 import java.io.Serializable;
 

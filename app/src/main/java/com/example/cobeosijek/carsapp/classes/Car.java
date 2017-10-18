@@ -1,8 +1,5 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.classes;
 
-import android.widget.BaseAdapter;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,14 +8,14 @@ import java.util.List;
 
 public class Car extends BaseModel {
 
-    private String id;
+    private int id;
     private String model;
     private String registration;
     private int age;
     private int speed;
-    private String images;
+    private List<String> images;
 
-    public Car(String id, String model, String registration, int age, int speed, String images) {
+    public Car(int id, String model, String registration, int age, int speed, List<String> images) {
         this.id = id;
         this.model = model;
         this.registration = registration;
@@ -27,8 +24,8 @@ public class Car extends BaseModel {
         this.images = images;
     }
 
-    public String getId() {
-        return getValueOrEmpty(id);
+    public int getId() {
+        return id;
     }
 
     public String getModel() {
@@ -47,7 +44,7 @@ public class Car extends BaseModel {
         return speed;
     }
 
-    public String getImages() {
+    public List<String> getImages() {
         return images;
     }
 }

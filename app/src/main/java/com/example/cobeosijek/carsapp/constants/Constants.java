@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.constants;
 
 /**
  * Created by cobeosijek on 18/10/2017.

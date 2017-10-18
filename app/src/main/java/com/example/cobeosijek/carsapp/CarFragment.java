@@ -10,6 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cobeosijek.carsapp.activity.CarDetailsActivity;
+import com.example.cobeosijek.carsapp.adapter.CarAdapter;
+import com.example.cobeosijek.carsapp.classes.Car;
+import com.example.cobeosijek.carsapp.classes.CarUtils;
+import com.example.cobeosijek.carsapp.constants.Constants;
+import com.example.cobeosijek.carsapp.interfaces.CarClickListener;
+
 import java.util.ArrayList;
 import java.util.List;
 

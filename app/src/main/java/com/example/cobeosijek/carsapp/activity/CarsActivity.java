@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.cobeosijek.carsapp.CarFragment;
+import com.example.cobeosijek.carsapp.constants.Constants;
+import com.example.cobeosijek.carsapp.R;
+import com.example.cobeosijek.carsapp.adapter.SimpleFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,16 +62,19 @@ public class CarsActivity extends AppCompatActivity implements View.OnClickListe
         List<String> tabMenuList = new ArrayList<>();
         tabMenuList.add("All");
         tabMenuList.add("Favorite");
+
         eMailText = findViewById(R.id.mail_text);
         toolbarText = findViewById(R.id.toolbar_text);
         backButtonImage = findViewById(R.id.back_button);
         launcherImage = findViewById(R.id.small_picture);
         menuTabLayout = findViewById(R.id.tab_menu);
         carPager = findViewById(R.id.car_pager);
+
         SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
         simpleFragmentPagerAdapter.addTitles(tabMenuList);
         simpleFragmentPagerAdapter.addFragment(CarFragment.newInstance(Constants.ALL_CARS));
         simpleFragmentPagerAdapter.addFragment(CarFragment.newInstance(Constants.FAVORITE_CARS));
+
         carPager.setAdapter(simpleFragmentPagerAdapter);
         menuTabLayout.setupWithViewPager(carPager);
 

@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.interfaces;
 
 /**
  * Created by cobeosijek on 18/10/2017.

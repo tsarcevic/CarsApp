@@ -1,9 +1,14 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.cobeosijek.carsapp.classes.Car;
+import com.example.cobeosijek.carsapp.interfaces.CarClickListener;
+import com.example.cobeosijek.carsapp.holders.CarHolder;
+import com.example.cobeosijek.carsapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

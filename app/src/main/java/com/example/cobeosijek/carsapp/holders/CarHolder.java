@@ -1,20 +1,20 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.holders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.cobeosijek.carsapp.R;
+import com.example.cobeosijek.carsapp.classes.Car;
+import com.example.cobeosijek.carsapp.interfaces.CarClickListener;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by cobeosijek on 17/10/2017.
  */
 
-class CarHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class CarHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     ImageView carImage;
     TextView carModelText;
@@ -42,10 +42,8 @@ class CarHolder extends RecyclerView.ViewHolder implements View.OnClickListener 
     }
 
     public void setCarInfo(Car car) {
-        String imageUrl = "https://auto.ndtvimg.com/car-images/medium/hyundai/verna/hyundai-verna.jpg?v=18";
-
         if (car != null) {
-            Picasso.with(itemView.getContext()).load(imageUrl).into(carImage);
+            Picasso.with(itemView.getContext()).load(car.getImages().get(0)).resize(300, 200).into(carImage);
             carModelText.setText(car.getModel());
             carYearText.setText("Year of release: " + car.getAge());
         }

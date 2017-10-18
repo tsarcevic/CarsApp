@@ -9,7 +9,8 @@
     <ImageView
         android:id="@+id/image_car"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:id="@+id/car_name"
@@ -26,6 +27,7 @@
         android:layout_below="@id/car_name"
         android:layout_toEndOf="@id/image_car"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/black" />
 
 </RelativeLayout>

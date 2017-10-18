@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.cobeosijek.carsapp.classes.Car;
+import com.example.cobeosijek.carsapp.adapter.CarPictureAdapter;
+import com.example.cobeosijek.carsapp.R;
 
 public class CarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +24,8 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
     TextView carRegistration;
     ViewPager picturePager;
     ImageView backButton;
+
+    CarPictureAdapter carPictureAdapter;
 
     Car car;
 
@@ -40,7 +44,13 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
 
         setUI();
         getExtras();
+        setAdapter();
         setText();
+    }
+
+    private void setAdapter() {
+        carPictureAdapter = new CarPictureAdapter(this, car.getImages());
+        picturePager.setAdapter(carPictureAdapter);
     }
 
     private void setUI() {
@@ -53,6 +63,7 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
         backButton = findViewById(R.id.back_button);
 
         backButton.setOnClickListener(this);
+
     }
 
     private void getExtras() {
