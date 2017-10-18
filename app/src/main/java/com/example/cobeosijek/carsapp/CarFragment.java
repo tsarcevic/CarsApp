@@ -1,6 +1,7 @@
 package com.example.cobeosijek.carsapp;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,45 +10,75 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class CarFragment extends Fragment {
-    public static final String PAGE_NUMBER = "pageNumber";
+public class CarFragment extends Fragment implements CarClickListener {
 
-    private int mPage;
+    public static final String CARS_TYPE = "carType";
+
     RecyclerView carRecycler;
+    CarAdapter carAdapter;
 
-    public static CarFragment newInstance(int page) {
+    List<Car> carList = new ArrayList<>();
+
+    public static CarFragment newInstance(int carsType) {
         Bundle args = new Bundle();
-        args.putInt(PAGE_NUMBER, page);
+        args.putInt(CARS_TYPE, carsType);
         CarFragment fragment = new CarFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mPage = getArguments().getInt(PAGE_NUMBER);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_car, container, false);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_car, container, false);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        setUI(view);
+        getExtras();
+    }
+
+    private void setUI(View view) {
         carRecycler = view.findViewById(R.id.recycler_fragment);
-        CarAdapter carAdapter = new CarAdapter();
-        carAdapter.setCarList(CarUtils.generateCars());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(container.getContext());
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(container.getContext(), DividerItemDecoration.VERTICAL);
+
+        carAdapter = new CarAdapter();
+        carAdapter.setCarClickListener(this);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
 
         carRecycler.addItemDecoration(itemDecoration);
         carRecycler.setLayoutManager(layoutManager);
         carRecycler.setAdapter(carAdapter);
+    }
 
-        return view;
+    private void getExtras() {
+        int carType = getArguments().getInt(CARS_TYPE);
+
+        if (carType == Constants.ALL_CARS) {
+            carList.addAll(CarUtils.generateCars());
+            carAdapter.setCarList(carList);
+        } else if (carType == Constants.FAVORITE_CARS) {
+            for (Car car : CarUtils.generateCars())
+                if (car.getAge() > 2010) {
+                    carList.add(car);
+                }
+            carAdapter.setCarList(carList);
+        }
+    }
+
+    @Override
+    public void selectedCar(int position) {
+        startActivity(CarDetailsActivity.getLaunchIntent(getActivity(), carList.get(position)));
     }
 }

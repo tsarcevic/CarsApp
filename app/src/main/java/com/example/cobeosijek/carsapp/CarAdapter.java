@@ -12,9 +12,11 @@ import java.util.List;
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class CarAdapter extends RecyclerView.Adapter<CarAdapterHolder> {
+public class CarAdapter extends RecyclerView.Adapter<CarHolder> {
 
     private List<Car> carList = new ArrayList<>();
+
+    private CarClickListener carListener;
 
     public void setCarList(List<Car> data) {
         carList.clear();
@@ -22,15 +24,19 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapterHolder> {
         notifyDataSetChanged();
     }
 
-    @Override
-    public CarAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View carView = layoutInflater.inflate(R.layout.item_car, parent, false);
-        return new CarAdapterHolder(carView);
+    public void setCarClickListener (CarClickListener itemCLickListener) {
+        this.carListener = itemCLickListener;
     }
 
     @Override
-    public void onBindViewHolder(CarAdapterHolder holder, int position) {
+    public CarHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View carView = layoutInflater.inflate(R.layout.item_car, parent, false);
+        return new CarHolder(carView, carListener);
+    }
+
+    @Override
+    public void onBindViewHolder(CarHolder holder, int position) {
         Car car = carList.get(position);
 
         holder.setCarInfo(car);

@@ -1,5 +1,7 @@
 package com.example.cobeosijek.carsapp;
 
+import android.widget.BaseAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,7 @@ import java.util.List;
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class Car {
+public class Car extends BaseModel {
 
     private String id;
     private String model;
@@ -26,15 +28,15 @@ public class Car {
     }
 
     public String getId() {
-        return id;
+        return getValueOrEmpty(id);
     }
 
     public String getModel() {
-        return model;
+        return getValueOrEmpty(model);
     }
 
     public String getRegistration() {
-        return registration;
+        return getValueOrEmpty(registration);
     }
 
     public int getAge() {

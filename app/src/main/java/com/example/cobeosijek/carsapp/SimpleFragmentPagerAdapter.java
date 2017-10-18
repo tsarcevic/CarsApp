@@ -1,8 +1,10 @@
 package com.example.cobeosijek.carsapp;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cobeosijek on 17/10/2017.
@@ -10,27 +12,33 @@ import android.support.v4.app.FragmentManager;
 
 public class SimpleFragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
 
-    private final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[]{"Favorite", "All"};
-    private Context context;
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private List<String> tabTitles = new ArrayList<>();
 
-    public SimpleFragmentPagerAdapter(FragmentManager fm, Context context) {
+    public SimpleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
-        this.context = context;
+    }
+
+    public void addTitles(List<String> titles) {
+        tabTitles.addAll(titles);
+    }
+
+    public void addFragment(Fragment fragment) {
+        fragmentList.add(fragment);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return CarFragment.newInstance(position + 1);
+        return fragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return fragmentList.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return tabTitles[position];
+        return tabTitles.get(position);
     }
 }

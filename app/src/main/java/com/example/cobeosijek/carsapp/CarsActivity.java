@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by cobeosijek on 17/10/2017.
  */
@@ -53,13 +56,20 @@ public class CarsActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setUI() {
+        List<String> tabMenuList = new ArrayList<>();
+        tabMenuList.add("All");
+        tabMenuList.add("Favorite");
         eMailText = findViewById(R.id.mail_text);
         toolbarText = findViewById(R.id.toolbar_text);
         backButtonImage = findViewById(R.id.back_button);
         launcherImage = findViewById(R.id.small_picture);
         menuTabLayout = findViewById(R.id.tab_menu);
         carPager = findViewById(R.id.car_pager);
-        carPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(), CarsActivity.this));
+        SimpleFragmentPagerAdapter simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
+        simpleFragmentPagerAdapter.addTitles(tabMenuList);
+        simpleFragmentPagerAdapter.addFragment(CarFragment.newInstance(Constants.ALL_CARS));
+        simpleFragmentPagerAdapter.addFragment(CarFragment.newInstance(Constants.FAVORITE_CARS));
+        carPager.setAdapter(simpleFragmentPagerAdapter);
         menuTabLayout.setupWithViewPager(carPager);
 
         backButtonImage.setOnClickListener(this);
