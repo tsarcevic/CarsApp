@@ -88,4 +88,5 @@ public class CarListFragment extends Fragment implements CarClickListener {
     public void onCarSelected(int position) {
         startActivity(CarDetailsActivity.getLaunchIntent(getActivity(), carList.get(position)));
     }
+
 }
