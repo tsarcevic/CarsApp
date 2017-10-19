@@ -56,7 +56,6 @@
         android:paddingTop="20dp"
         android:textColor="@color/white" />
 
-
     <TextView
         android:id="@+id/car_year"
         android:layout_width="match_parent"

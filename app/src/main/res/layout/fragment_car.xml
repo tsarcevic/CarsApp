@@ -8,6 +8,8 @@
         android:id="@+id/recycler_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:clipToPadding="false"
+        android:paddingTop="10dp" />
 
 </LinearLayout>

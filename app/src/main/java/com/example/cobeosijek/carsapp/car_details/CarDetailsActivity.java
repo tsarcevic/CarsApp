@@ -40,7 +40,6 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_car_details);
 
         setUI();
@@ -50,7 +49,8 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setAdapter() {
-        carPictureAdapter = new CarPictureAdapter(this, car.getImages());
+        // TODO: 19/10/2017 setimages method insted of constructor
+        carPictureAdapter = new CarPictureAdapter(car.getImages());
         CircleIndicator circleIndicator = findViewById(R.id.indicator);
         picturePager.setAdapter(carPictureAdapter);
         if (carPictureAdapter.getCount() > 1) {
@@ -68,7 +68,6 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
         backButton = findViewById(R.id.back_button);
 
         backButton.setOnClickListener(this);
-
     }
 
     private void getExtras() {
@@ -89,7 +88,7 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.back_button) {
-            this.onBackPressed();
+            onBackPressed();
         }
     }
 }

@@ -43,8 +43,7 @@ public class CarListFragment extends Fragment implements CarClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_car, container, false);
     }
 
@@ -74,19 +73,19 @@ public class CarListFragment extends Fragment implements CarClickListener {
 
         if (getArguments().getInt(CARS_TYPE) == Constants.ALL_CARS) {
             carList.addAll(CarUtils.generateCars());
-            carListAdapter.setCarList(carList);
         } else if (getArguments().getInt(CARS_TYPE) == Constants.FAVORITE_CARS) {
             for (Car car : CarUtils.generateCars())
                 if (car.getAge() > 2010) {
                     carList.add(car);
                 }
-            carListAdapter.setCarList(carList);
         }
+
+        carListAdapter.setCarList(carList);
+
     }
 
     @Override
     public void onCarSelected(int position) {
         startActivity(CarDetailsActivity.getLaunchIntent(getActivity(), carList.get(position)));
     }
-
 }

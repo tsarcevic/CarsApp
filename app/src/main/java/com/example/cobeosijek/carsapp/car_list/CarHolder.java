@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
  * Created by cobeosijek on 17/10/2017.
  */
 
-class CarHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class CarHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     ImageView carImage;
     TextView carModelText;
@@ -22,7 +22,7 @@ class CarHolder extends RecyclerView.ViewHolder implements View.OnClickListener 
 
     private CarClickListener carListener;
 
-    CarHolder(View itemView, CarClickListener carListener) {
+    public CarHolder(View itemView, CarClickListener carListener) {
         super(itemView);
 
         carImage = itemView.findViewById(R.id.image_car);
@@ -41,9 +41,9 @@ class CarHolder extends RecyclerView.ViewHolder implements View.OnClickListener 
         }
     }
 
-    void setCarInfo(Car car) {
-        if (car != null) {
-            Picasso.with(itemView.getContext()).load(car.getImages().get(0)).resize(300, 200).into(carImage);
+    public void setCarInfo(Car car) {
+        if (car != null) { // TODO: 19/10/2017 check list size, move resize
+            Picasso.with(carImage.getContext()).load(car.getImages().get(0)).resize(300, 200).into(carImage);
             carModelText.setText(car.getModel());
             carYearText.setText(String.format(itemView.getContext().getString(R.string.year_of_release), car.getAge()));
         }

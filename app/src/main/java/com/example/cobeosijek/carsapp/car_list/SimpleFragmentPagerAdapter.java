@@ -2,6 +2,7 @@ package com.example.cobeosijek.carsapp.car_list;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class SimpleFragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
+public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> tabTitles = new ArrayList<>();

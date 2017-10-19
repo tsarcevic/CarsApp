@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.login_button) {
-
+// TODO: 19/10/2017 checkstring into stringutils
             if (checkText(emailEditText.getText().toString()) && checkPassword(passwordEditText.getText().toString())) {
                 startActivity(CarsActivity.getLaunchIntent(this, emailEditText.getText().toString().trim()));
 
@@ -59,19 +59,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             passwordEditText.setText("");
 
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     private boolean checkText(String text) {
         if (!TextUtils.isEmpty(text) && Patterns.EMAIL_ADDRESS.matcher(text).matches()) {
             return true;
-        } else {
-            emailEditText.setError(getString(R.string.invalid_mail));
-            emailEditText.setText("");
-
-            return false;
         }
+        emailEditText.setError(getString(R.string.invalid_mail));
+        emailEditText.setText("");
+
+        return false;
     }
 }

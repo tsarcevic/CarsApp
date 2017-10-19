@@ -6,7 +6,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary">
 
         <TextView
@@ -14,8 +14,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
             android:text="@string/login_form"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -57,7 +55,7 @@
         android:drawableStart="@drawable/ic_password"
         android:hint="@string/password_login"
         android:inputType="textPassword"
-        android:text="mrstitamo"/>
+        android:text="sdhjkadhjskad"/>
 
     <Button
         android:id="@+id/login_button"

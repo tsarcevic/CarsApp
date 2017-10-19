@@ -1,6 +1,5 @@
 package com.example.cobeosijek.carsapp.car_details;
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +18,9 @@ import java.util.List;
 
 public class CarPictureAdapter extends PagerAdapter {
 
-    private Context context;
-
-    private LayoutInflater layoutInflater;
-
     private List<String> imageList = new ArrayList<>();
 
-    public CarPictureAdapter(Context context, List<String> data) {
-        this.context = context;
+    public CarPictureAdapter(List<String> data) {
         imageList.addAll(data);
     }
 
@@ -42,20 +36,16 @@ public class CarPictureAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        layoutInflater = LayoutInflater.from(container.getContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(container.getContext());
         View itemView = layoutInflater.inflate(R.layout.item_pager_picture, container, false);
-
+// TODO: 19/10/2017 check if list exist
         ImageView imageView = itemView.findViewById(R.id.pager_image);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        Picasso.with(context).load(imageList.get(position)).into(imageView);
+        Picasso.with(imageView.getContext()).load(imageList.get(position)).into(imageView);
 
         container.addView(itemView, 0);
 
         return itemView;
     }
 
-    @Override
-    public void destroyItem(ViewGroup container, int i, Object obj) {
-        container.removeView((View) obj);
-    }
 }
