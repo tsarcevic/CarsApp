@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.car_list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cobeosijek.carsapp.activity.CarDetailsActivity;
-import com.example.cobeosijek.carsapp.adapter.CarAdapter;
-import com.example.cobeosijek.carsapp.classes.Car;
-import com.example.cobeosijek.carsapp.classes.CarUtils;
+import com.example.cobeosijek.carsapp.R;
+import com.example.cobeosijek.carsapp.car_details.CarDetailsActivity;
+import com.example.cobeosijek.carsapp.car_list.utils.CarUtils;
 import com.example.cobeosijek.carsapp.constants.Constants;
 import com.example.cobeosijek.carsapp.interfaces.CarClickListener;
 
@@ -24,20 +23,22 @@ import java.util.List;
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class CarFragment extends Fragment implements CarClickListener {
+public class CarListFragment extends Fragment implements CarClickListener {
 
     public static final String CARS_TYPE = "carType";
 
     RecyclerView carRecycler;
-    CarAdapter carAdapter;
+    CarListAdapter carListAdapter;
 
     List<Car> carList = new ArrayList<>();
 
-    public static CarFragment newInstance(int carsType) {
+    public static CarListFragment newInstance(int carsType) {
         Bundle args = new Bundle();
         args.putInt(CARS_TYPE, carsType);
-        CarFragment fragment = new CarFragment();
+
+        CarListFragment fragment = new CarListFragment();
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -58,34 +59,33 @@ public class CarFragment extends Fragment implements CarClickListener {
     private void setUI(View view) {
         carRecycler = view.findViewById(R.id.recycler_fragment);
 
-        carAdapter = new CarAdapter();
-        carAdapter.setCarClickListener(this);
+        carListAdapter = new CarListAdapter();
+        carListAdapter.setCarClickListener(this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
 
         carRecycler.addItemDecoration(itemDecoration);
         carRecycler.setLayoutManager(layoutManager);
-        carRecycler.setAdapter(carAdapter);
+        carRecycler.setAdapter(carListAdapter);
     }
 
     private void getExtras() {
-        int carType = getArguments().getInt(CARS_TYPE);
 
-        if (carType == Constants.ALL_CARS) {
+        if (getArguments().getInt(CARS_TYPE) == Constants.ALL_CARS) {
             carList.addAll(CarUtils.generateCars());
-            carAdapter.setCarList(carList);
-        } else if (carType == Constants.FAVORITE_CARS) {
+            carListAdapter.setCarList(carList);
+        } else if (getArguments().getInt(CARS_TYPE) == Constants.FAVORITE_CARS) {
             for (Car car : CarUtils.generateCars())
                 if (car.getAge() > 2010) {
                     carList.add(car);
                 }
-            carAdapter.setCarList(carList);
+            carListAdapter.setCarList(carList);
         }
     }
 
     @Override
-    public void selectedCar(int position) {
+    public void onCarSelected(int position) {
         startActivity(CarDetailsActivity.getLaunchIntent(getActivity(), carList.get(position)));
     }
 }

@@ -1,4 +1,6 @@
-package com.example.cobeosijek.carsapp.classes;
+package com.example.cobeosijek.carsapp.car_list;
+
+import com.example.cobeosijek.carsapp.car_list.utils.BaseModel;
 
 import java.util.List;
 

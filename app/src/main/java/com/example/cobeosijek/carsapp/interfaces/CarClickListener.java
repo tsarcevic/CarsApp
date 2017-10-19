@@ -6,5 +6,5 @@ package com.example.cobeosijek.carsapp.interfaces;
 
 public interface CarClickListener {
 
-    void selectedCar(int position);
+    void onCarSelected(int position);
 }

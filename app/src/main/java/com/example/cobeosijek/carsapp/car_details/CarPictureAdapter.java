@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp.adapter;
+package com.example.cobeosijek.carsapp.car_details;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -19,9 +19,9 @@ import java.util.List;
 
 public class CarPictureAdapter extends PagerAdapter {
 
-    Context context;
+    private Context context;
 
-    LayoutInflater layoutInflater;
+    private LayoutInflater layoutInflater;
 
     private List<String> imageList = new ArrayList<>();
 

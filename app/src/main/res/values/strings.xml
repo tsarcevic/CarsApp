@@ -8,4 +8,8 @@
     <string name="invalid_mail">Invalid email</string>
     <string name="home_text">Home</string>
     <string name="car_details">Car details</string>
+    <string name="car_speed">Speed: %d km/h</string>
+    <string name="car_year">Age: %d</string>
+    <string name="year_of_release">Year of release: %d</string>
+    <string name="car_registration">Registration: %s</string>
 </resources>

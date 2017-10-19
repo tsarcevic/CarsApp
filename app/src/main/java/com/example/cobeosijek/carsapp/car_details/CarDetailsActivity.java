@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp.activity;
+package com.example.cobeosijek.carsapp.car_details;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.cobeosijek.carsapp.classes.Car;
-import com.example.cobeosijek.carsapp.adapter.CarPictureAdapter;
+import com.example.cobeosijek.carsapp.car_list.Car;
 import com.example.cobeosijek.carsapp.R;
+
+import me.relex.circleindicator.CircleIndicator;
 
 public class CarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String KEY_POSITION_DETAILS = "position";
+    private static final String KEY_CARLIST_DETAILS = "car_list";
 
     TextView carName;
     TextView carYear;
@@ -31,7 +32,7 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
 
     public static Intent getLaunchIntent(Context from, Car car) {
         Intent intent = new Intent(from, CarDetailsActivity.class);
-        intent.putExtra(KEY_POSITION_DETAILS, car);
+        intent.putExtra(KEY_CARLIST_DETAILS, car);
 
         return intent;
     }
@@ -50,7 +51,11 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
 
     private void setAdapter() {
         carPictureAdapter = new CarPictureAdapter(this, car.getImages());
+        CircleIndicator circleIndicator = findViewById(R.id.indicator);
         picturePager.setAdapter(carPictureAdapter);
+        if (carPictureAdapter.getCount() > 1) {
+            circleIndicator.setViewPager(picturePager);
+        }
     }
 
     private void setUI() {
@@ -67,16 +72,18 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void getExtras() {
-        if (getIntent().hasExtra(KEY_POSITION_DETAILS)) {
-            car = (Car) getIntent().getSerializableExtra(KEY_POSITION_DETAILS);
+        if (getIntent().hasExtra(KEY_CARLIST_DETAILS)) {
+            car = (Car) getIntent().getSerializableExtra(KEY_CARLIST_DETAILS);
         }
     }
 
     private void setText() {
-        carName.setText(car.getModel() + "");
-        carSpeed.setText("Speed: " + car.getSpeed());
-        carRegistration.setText("Registration: " + car.getRegistration());
-        carYear.setText("Age: " + car.getAge());
+        if (car != null) {
+            carName.setText(car.getModel());
+            carSpeed.setText(String.format((getString(R.string.car_speed)), car.getSpeed()));
+            carRegistration.setText(String.format((getString(R.string.car_registration)), car.getRegistration()));
+            carYear.setText(String.format((getString(R.string.car_year)), car.getAge()));
+        }
     }
 
     @Override

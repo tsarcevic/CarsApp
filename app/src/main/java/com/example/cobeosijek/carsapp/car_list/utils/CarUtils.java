@@ -1,4 +1,6 @@
-package com.example.cobeosijek.carsapp.classes;
+package com.example.cobeosijek.carsapp.car_list.utils;
+
+import com.example.cobeosijek.carsapp.car_list.Car;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ public class CarUtils {
         List<String> pictureList = new ArrayList<>();
 
         pictureList.add("https://i.ytimg.com/vi/JBrUblpul50/maxresdefault.jpg");
-        pictureList.add("https://preview.netcarshow.com/Audi-A4_2.0T-2005-1600-0e.jpg");
+        pictureList.add("https://i.ytimg.com/vi/QOJ6BfvW9jU/maxresdefault.jpg");
         pictureList.add("https://s1.cdn.autoevolution.com/images/gallery/AUDI-A4-1589_28.jpg");
         carList.add(new Car(0, "Audi A4", "DJ-2000-TT", 2005, 185, pictureList));
         pictureList = new ArrayList<>();
@@ -41,7 +43,7 @@ public class CarUtils {
         carList.add(new Car(6, "Mercedes E220", "VK-130-FO", 2012, 230, pictureList));
         pictureList = new ArrayList<>();
         pictureList.add("http://images.parkers.bauercdn.com/pagefiles/197414/driving-moving-exterior/073525200_1237889176.jpg");
-        pictureList.add("https://preview.netcarshow.com/Ford-Focus_CMax-2003-1600-10.jpg");
+        pictureList.add("http://www.automotivetrends.com/wp-content/uploads/2010/02/P1010210.jpg");
         carList.add(new Car(7, "Ford Focus", "DJ-313-EL", 2003, 180, pictureList));
         pictureList = new ArrayList<>();
         pictureList.add("https://static.cargurus.com/images/site/2013/11/30/12/03/2009_ford_mustang_gt_premium-pic-2270367342948455522.jpeg");

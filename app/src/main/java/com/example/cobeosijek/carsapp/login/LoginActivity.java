@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp.activity;
+package com.example.cobeosijek.carsapp.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.cobeosijek.carsapp.R;
+import com.example.cobeosijek.carsapp.car_list.CarsActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -72,6 +73,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             return false;
         }
-
     }
 }

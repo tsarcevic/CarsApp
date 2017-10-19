@@ -1,13 +1,13 @@
-package com.example.cobeosijek.carsapp.adapter;
+package com.example.cobeosijek.carsapp.car_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cobeosijek.carsapp.classes.Car;
+import com.example.cobeosijek.carsapp.car_list.Car;
 import com.example.cobeosijek.carsapp.interfaces.CarClickListener;
-import com.example.cobeosijek.carsapp.holders.CarHolder;
+import com.example.cobeosijek.carsapp.car_list.CarHolder;
 import com.example.cobeosijek.carsapp.R;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.List;
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class CarAdapter extends RecyclerView.Adapter<CarHolder> {
+public class CarListAdapter extends RecyclerView.Adapter<CarHolder> {
 
     private List<Car> carList = new ArrayList<>();
 
