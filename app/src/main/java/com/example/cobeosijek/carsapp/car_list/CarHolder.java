@@ -42,8 +42,10 @@ public class CarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
     }
 
     public void setCarInfo(Car car) {
-        if (car != null) { // TODO: 19/10/2017 check list size, move resize
-            Picasso.with(carImage.getContext()).load(car.getImages().get(0)).resize(300, 200).into(carImage);
+        if (car != null) {
+            if (car.getImages() != null && !car.getImages().isEmpty()) {
+                Picasso.with(carImage.getContext()).load(car.getImages().get(0)).into(carImage);
+            }
             carModelText.setText(car.getModel());
             carYearText.setText(String.format(itemView.getContext().getString(R.string.year_of_release), car.getAge()));
         }

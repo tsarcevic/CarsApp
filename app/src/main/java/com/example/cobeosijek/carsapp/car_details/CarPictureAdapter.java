@@ -20,8 +20,10 @@ public class CarPictureAdapter extends PagerAdapter {
 
     private List<String> imageList = new ArrayList<>();
 
-    public CarPictureAdapter(List<String> data) {
+    public void addImages (List<String> data) {
+        imageList.clear();
         imageList.addAll(data);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -38,10 +40,11 @@ public class CarPictureAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         LayoutInflater layoutInflater = LayoutInflater.from(container.getContext());
         View itemView = layoutInflater.inflate(R.layout.item_pager_picture, container, false);
-// TODO: 19/10/2017 check if list exist
-        ImageView imageView = itemView.findViewById(R.id.pager_image);
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        Picasso.with(imageView.getContext()).load(imageList.get(position)).into(imageView);
+        if (imageList != null && !imageList.isEmpty()) {
+            ImageView imageView = itemView.findViewById(R.id.pager_image);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            Picasso.with(imageView.getContext()).load(imageList.get(position)).into(imageView);
+        }
 
         container.addView(itemView, 0);
 

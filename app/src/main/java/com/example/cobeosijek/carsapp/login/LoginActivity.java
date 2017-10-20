@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.cobeosijek.carsapp.R;
 import com.example.cobeosijek.carsapp.car_list.CarsActivity;
+import com.example.cobeosijek.carsapp.utils.StringUtils;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,8 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.login_button) {
-// TODO: 19/10/2017 checkstring into stringutils
-            if (checkText(emailEditText.getText().toString()) && checkPassword(passwordEditText.getText().toString())) {
+            if (StringUtils.checkText(emailEditText.getText().toString(), emailEditText) && StringUtils.checkPassword(passwordEditText.getText().toString(), passwordEditText)) {
                 startActivity(CarsActivity.getLaunchIntent(this, emailEditText.getText().toString().trim()));
 
                 emailEditText.setText("");
@@ -51,25 +51,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 passwordEditText.setError(null);
             }
         }
-    }
-
-    private boolean checkPassword(String password) {
-        if (password.length() < 6) {
-            passwordEditText.setError(getString(R.string.password_error));
-            passwordEditText.setText("");
-
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkText(String text) {
-        if (!TextUtils.isEmpty(text) && Patterns.EMAIL_ADDRESS.matcher(text).matches()) {
-            return true;
-        }
-        emailEditText.setError(getString(R.string.invalid_mail));
-        emailEditText.setText("");
-
-        return false;
     }
 }
