@@ -44,18 +44,7 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
 
         setUI();
         getExtras();
-        setAdapter();
         setText();
-    }
-
-    private void setAdapter() {
-        // TODO: 19/10/2017 setimages method insted of constructor
-        carPictureAdapter = new CarPictureAdapter(car.getImages());
-        CircleIndicator circleIndicator = findViewById(R.id.indicator);
-        picturePager.setAdapter(carPictureAdapter);
-        if (carPictureAdapter.getCount() > 1) {
-            circleIndicator.setViewPager(picturePager);
-        }
     }
 
     private void setUI() {
@@ -68,6 +57,14 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
         backButton = findViewById(R.id.back_button);
 
         backButton.setOnClickListener(this);
+
+        carPictureAdapter = new CarPictureAdapter();
+        carPictureAdapter.addImages(car.getImages());
+        CircleIndicator circleIndicator = findViewById(R.id.indicator);
+        picturePager.setAdapter(carPictureAdapter);
+        if (carPictureAdapter.getCount() > 1) {
+            circleIndicator.setViewPager(picturePager);
+        }
     }
 
     private void getExtras() {
